@@ -80,6 +80,7 @@
         padding-top: 10px;
         color: #484848;
         font-weight: 300;
+        text-align: left;
     }
 
     #tooltip {
@@ -126,9 +127,6 @@
         <p>Availability in a Year : <span id="availability_365"></span></p>
     </div>
     <div id="title">New York City Airbnb(2019)</div>
-    <div id="chart"></div>
-    <div id="explanation">Since 2008, guests and hosts have used Airbnb to expand on traveling possibilities and present more unique, personalized way of experiencing the world. This dataset describes the listing activity and metrics in NYC, NY for 2019.<br>
-        <br>This data file includes all needed information to find out more about hosts, geographical availability, necessary metrics to make predictions and draw conclusions.<br><br></div>
     <!-- Button -->
     <form>
         <input id="check1" type="checkbox" class="checkbox" value="Bronx" checked><label>Bronx</label>
@@ -154,6 +152,39 @@
     <div style="float: left; padding-left: 50px" id="legend2"><label style="line-height:50px; vertical-align: top;">Calculated Host Listings Count </label></div>
     <div style="float: left; padding-left: 50px" id="legend3"><label style="line-height:50px; vertical-align: top;">Map Legend </label></div>
     <div style="float: left padding-left: 50px;" id="totalDistance"><svg id="svg2"></svg></div>
+    <div id="explanation">We use New York City Airbnb open source data from 2011 to 2019 as our datasets. The datasets has 16 columns those columns are lists as follow with their definition:<br><br>
+Id - listing ID<br>
+Name - name of the listing<br>
+host_id - host ID<br>
+host_name - name of the host<br>
+neighbourhood_group - location<br>
+neighbourhood - area<br>
+latitude - latitude coordinates<br>
+longitude - longitude coordinates<br>
+room_type - listing space type<br>
+price - price in dollars<br>
+minimum_nights - amount of nights minimum<br>
+number_of_reviews - number of reviews<br>
+last_review - latest review<br>
+reviews_per_month - number of reviews per month<br>
+calculated_host_listings_count - amount of listing per host<br>
+availability_365 - number of days when listing is available for booking<br><br>
+
+• The quality of questions posed about the data; you should think about both "breadth" and "depth" questions<br><br>
+
+• The quality of your design process: how did you go about transforming the questions into an interactive vis?<br><br>
+
+
+when we analyzed the datasets, the first thing came into our mind is use the latitude and longitude coordinated with geo json to visualize the location of Airbnb and point out the subway lines and stations of New York City. Since the datasets doesn’t have the review score for each Airbnb, we weren’t able to analyze the relationship between the subway stations and review score.<br><br>
+
+So our question is about the relationship between subway stations and the price. <br><br>
+
+In order to do the analysis, we create multiple filter to filter out the datasets. We use last review year, neighborhood group and room type to achieve the analysis. During the design visualization, we figure out an interest result. In the datasets, the last review means the newest review. At beginning, we though the date of last review is the initial date of the host. After we play with our visualization, we realized the last review means that after this date no one has left review for the host. Which means either no one has lived here, or no one left reviews. Review is essential for Airbnb host. The host always asked tenant to leave good review. So we believe the last review means the host is either not listing or no customers. We check each year of our visualization. Every circles from 2011 to 2017 represents, the host had not listing or no customers, which leads us a conclusion. Those hosts are out of the Airbnb market. So many host is no longer in the business. For 2018 to 2019, those host are still in the market, and the Airbnb service is cover entire New York City. The last review shows us the opportunity and competition of Airbnb business. <br><br>
+
+•The perceptual effectiveness of your vis; How well did you utilize the perceptual principles learned from the class? Were the attributes visualized using appropriate visual encodings? How appropriate were the provided interactions
+We construct multiple filter functions of our design and use tooltip to present the details of data. When we construct the multiple filter functions, we have a bug on the filter functions. The multiple filter functions dose not cooperate to each other. When we choose a neighborhood group and then choose room type. The filter functions don’t filter correct. It took a lot of time for us to fix the bug. The filter functions and tooltip provide us a easy way to filter and analyze the detail of the Airbnb host in the visualized map. It provides direct detail about the price and subway stations. In the common sense, we thought the price will go up with the subway stations. But with the visualization, we figure out that neighborhood has more relationship with price. Since public transportation is very convenient in New York City, the price will have much different with the stations. <br><br>
+•In your design document, you should discuss the answers to the questions posed, as well as any other insights your uncovered from the vis. What have you learned after using the vis you created?<br><br>
+Airbnb is covered entire New York City. With the variety choices of locations, room type and price for Airbnb, you can choose the perfect room with in your budget when you travel to New York City. You just need to filter out the ten thousands choices with out visualization.</div>
 </body>
 <script>
 document.getElementById("input_year").value = 2019;
@@ -406,7 +437,7 @@ d3.csv("AB_NYC_2019.csv", function(data_review) {
 
                 //Get this bar's x/y values, then augment for the tooltip
                 var xPosition = 0;
-                var yPosition = 100;
+                var yPosition = 0;
 
                 //Update the tooltip position and value
                 d3.select("#tooltip")
