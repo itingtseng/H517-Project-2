@@ -123,7 +123,7 @@
         <p>Minimum Nights : <span id="minimum_nights"></span></p>
         <p>Number of Reviews : <span id="number_of_reviews"></span></p>
         <p>Last Review Time : <span id="review_time"></span></p>
-        <p>Host Count Days : <span id="calculated_host_listings_count"></span></p>
+        <p>Host Listings Count : <span id="calculated_host_listings_count"></span></p>
         <p>Availability in a Year : <span id="availability_365"></span></p>
     </div>
     <div id="title">New York City Airbnb in 2019</div>
@@ -162,6 +162,8 @@
         <div id="totalDistance"><svg id="svg2"></svg></div>
     </div>
     <div id="explanation">
+        <h4>YouTube video</h4>
+        <a href="https://youtu.be/Pou7nx0tKpk">New York City Airbnb Open Data</a><br><br>
         <h1>Description</h1>
         Since 2008, guests and hosts have used Airbnb to expand on traveling possibilities and present more unique, personalized way of experiencing the world. This dataset describes the listing activity and metrics in NYC, NY for 2019.<br><br>
         This data file includes all needed information to find out more about hosts, geographical availability, necessary metrics to make predictions and draw conclusions.<br><br>
@@ -741,7 +743,7 @@ d3.csv("price.csv", function(data) {
             "translate(" + ((width + margin.right + margin.left) / 2) + " ," +
             (height + margin.top + margin.bottom) + ")")
         .style("text-anchor", "middle")
-        .text("Price");
+        .text("Price Per Night in US dollars");
 
     svg2.append("rect")
         .attr("class", "zoom")
